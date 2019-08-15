@@ -81,4 +81,13 @@ class customCell : UITableViewCell{
         
     }
     
+    func configureCell(sportModel: SportModel) {
+        self.imageView?.image    = UIImage(named: "sport")
+        self.sportNameLabel.text = "\(sportModel.sportNameStr)"
+        self.describLbl.text     = "\(sportModel.sportTypeStr)"
+    }
+    
+    
+ 
+    
 }

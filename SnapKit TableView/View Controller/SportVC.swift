@@ -70,12 +70,13 @@ extension SportVC :UITableViewDelegate,UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier:customCell.cellIdentifier, for: indexPath) as? customCell else {
+            fatalError("Couldn't implement cell.")
+        }
         let sportDict = sportArray[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier:customCell.cellIdentifier, for: indexPath) as! customCell
-        cell.imageView?.image = UIImage(named: "sport")
-       
-        cell.sportNameLabel.text = "\(sportDict.sportNameStr)"
-        cell.describLbl.text     = "\(sportDict.sportTypeStr)"
+        cell.configureCell(sportModel: sportDict)
+
         return cell
     }
     public func numberOfSections(in tableView: UITableView) -> Int {
